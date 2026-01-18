@@ -1,0 +1,31 @@
+{
+  "extractor": "resnet18",
+  "kernel": "linear",
+  "C": 1.0,
+  "probability": false,
+  "use_pca": true,
+  "pca_components": 128,
+  "train_shape": [
+    2153,
+    512
+  ],
+  "valid_shape": [
+    619,
+    512
+  ],
+  "accuracy": 0.9886914378029079,
+  "precision": 0.875,
+  "recall": 0.7368421052631579,
+  "f1": 0.8,
+  "AP": 0.9266969519535919,
+  "confusion_matrix": [
+    [
+      598,
+      2
+    ],
+    [
+      5,
+      14
+    ]
+  ]
+}

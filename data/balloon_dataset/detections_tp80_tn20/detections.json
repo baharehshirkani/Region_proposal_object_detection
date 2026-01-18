@@ -1,0 +1,100 @@
+[
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/518678836_94d58e3839_b_jpg.rf.017f6bee175aa2d21cbbdd29485d33a5.jpg",
+    "detections": []
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/4887227769_acd2e6127d_b_jpg.rf.f97f43a39827cc532ead9648065a91ca.jpg",
+    "detections": [
+      {
+        "bbox": [
+          0,
+          0,
+          195,
+          415
+        ],
+        "score": 0.7491426467895508
+      }
+    ],
+    "num_proposals": 225,
+    "kept_after_thr": 2,
+    "kept_after_nms": 1
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/17156759330_5af4f5a5b8_k_jpg.rf.52e622bd9600a6dc4652c3622c439616.jpg",
+    "detections": [
+      {
+        "bbox": [
+          18,
+          32,
+          167,
+          257
+        ],
+        "score": 0.9420709609985352
+      }
+    ],
+    "num_proposals": 176,
+    "kept_after_thr": 6,
+    "kept_after_nms": 1
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/489752654_777853a0ba_b_jpg.rf.d625ab554d8bc1366233a22c5975533d.jpg",
+    "detections": [
+      {
+        "bbox": [
+          117,
+          247,
+          29,
+          38
+        ],
+        "score": 0.6566824913024902
+      }
+    ],
+    "num_proposals": 738,
+    "kept_after_thr": 1,
+    "kept_after_nms": 1
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/485227412_e335662bb5_b_jpg.rf.c3b02e09097409dfeb31d85ce92175b2.jpg",
+    "detections": [
+      {
+        "bbox": [
+          206,
+          299,
+          66,
+          81
+        ],
+        "score": 0.9538236260414124
+      },
+      {
+        "bbox": [
+          213,
+          106,
+          151,
+          200
+        ],
+        "score": 0.7130934596061707
+      }
+    ],
+    "num_proposals": 393,
+    "kept_after_thr": 3,
+    "kept_after_nms": 2
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/1297451346_5b92bdac08_b_jpg.rf.abcf83eaef96ea7ce926edd516469806.jpg",
+    "detections": [
+      {
+        "bbox": [
+          255,
+          148,
+          160,
+          102
+        ],
+        "score": 0.7632825970649719
+      }
+    ],
+    "num_proposals": 225,
+    "kept_after_thr": 1,
+    "kept_after_nms": 1
+  }
+]

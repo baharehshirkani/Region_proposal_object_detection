@@ -1,0 +1,284 @@
+[
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/518678836_94d58e3839_b_jpg.rf.017f6bee175aa2d21cbbdd29485d33a5.jpg",
+    "detections": [
+      {
+        "bbox": [
+          249,
+          227,
+          30,
+          39
+        ],
+        "score": 0.636245846748352
+      }
+    ],
+    "num_proposals": 44,
+    "kept_after_thr": 1,
+    "kept_after_nms": 1
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/4887227769_acd2e6127d_b_jpg.rf.f97f43a39827cc532ead9648065a91ca.jpg",
+    "detections": [
+      {
+        "bbox": [
+          198,
+          0,
+          81,
+          136
+        ],
+        "score": 0.8631944060325623
+      },
+      {
+        "bbox": [
+          96,
+          0,
+          75,
+          84
+        ],
+        "score": 0.8615410327911377
+      },
+      {
+        "bbox": [
+          103,
+          0,
+          131,
+          183
+        ],
+        "score": 0.8271676301956177
+      },
+      {
+        "bbox": [
+          197,
+          206,
+          74,
+          83
+        ],
+        "score": 0.7741429805755615
+      },
+      {
+        "bbox": [
+          106,
+          122,
+          89,
+          154
+        ],
+        "score": 0.687238872051239
+      },
+      {
+        "bbox": [
+          155,
+          301,
+          100,
+          114
+        ],
+        "score": 0.610429584980011
+      }
+    ],
+    "num_proposals": 225,
+    "kept_after_thr": 9,
+    "kept_after_nms": 6
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/17156759330_5af4f5a5b8_k_jpg.rf.52e622bd9600a6dc4652c3622c439616.jpg",
+    "detections": [
+      {
+        "bbox": [
+          18,
+          32,
+          167,
+          257
+        ],
+        "score": 0.9542847871780396
+      },
+      {
+        "bbox": [
+          204,
+          233,
+          152,
+          44
+        ],
+        "score": 0.8502453565597534
+      }
+    ],
+    "num_proposals": 176,
+    "kept_after_thr": 8,
+    "kept_after_nms": 2
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/489752654_777853a0ba_b_jpg.rf.d625ab554d8bc1366233a22c5975533d.jpg",
+    "detections": [
+      {
+        "bbox": [
+          234,
+          148,
+          38,
+          59
+        ],
+        "score": 0.9627788066864014
+      },
+      {
+        "bbox": [
+          265,
+          91,
+          59,
+          74
+        ],
+        "score": 0.9245661497116089
+      },
+      {
+        "bbox": [
+          167,
+          129,
+          61,
+          65
+        ],
+        "score": 0.9098004698753357
+      },
+      {
+        "bbox": [
+          134,
+          208,
+          39,
+          36
+        ],
+        "score": 0.8924108147621155
+      },
+      {
+        "bbox": [
+          117,
+          247,
+          29,
+          38
+        ],
+        "score": 0.81380695104599
+      },
+      {
+        "bbox": [
+          200,
+          184,
+          33,
+          41
+        ],
+        "score": 0.7958788275718689
+      },
+      {
+        "bbox": [
+          210,
+          158,
+          31,
+          37
+        ],
+        "score": 0.6992189288139343
+      },
+      {
+        "bbox": [
+          237,
+          69,
+          40,
+          25
+        ],
+        "score": 0.6885082125663757
+      },
+      {
+        "bbox": [
+          277,
+          65,
+          43,
+          31
+        ],
+        "score": 0.660321831703186
+      },
+      {
+        "bbox": [
+          28,
+          0,
+          387,
+          95
+        ],
+        "score": 0.6329696178436279
+      }
+    ],
+    "num_proposals": 738,
+    "kept_after_thr": 23,
+    "kept_after_nms": 10
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/485227412_e335662bb5_b_jpg.rf.c3b02e09097409dfeb31d85ce92175b2.jpg",
+    "detections": [
+      {
+        "bbox": [
+          206,
+          309,
+          64,
+          71
+        ],
+        "score": 0.9921706318855286
+      },
+      {
+        "bbox": [
+          225,
+          299,
+          47,
+          36
+        ],
+        "score": 0.8890812397003174
+      },
+      {
+        "bbox": [
+          125,
+          167,
+          115,
+          183
+        ],
+        "score": 0.6403608322143555
+      }
+    ],
+    "num_proposals": 393,
+    "kept_after_thr": 5,
+    "kept_after_nms": 3
+  },
+  {
+    "image": "/Users/baharehshirkani/exercise3/data/balloon_dataset/test/1297451346_5b92bdac08_b_jpg.rf.abcf83eaef96ea7ce926edd516469806.jpg",
+    "detections": [
+      {
+        "bbox": [
+          261,
+          150,
+          96,
+          93
+        ],
+        "score": 0.9897685050964355
+      },
+      {
+        "bbox": [
+          191,
+          187,
+          75,
+          90
+        ],
+        "score": 0.9046478867530823
+      },
+      {
+        "bbox": [
+          125,
+          278,
+          92,
+          83
+        ],
+        "score": 0.8322725892066956
+      },
+      {
+        "bbox": [
+          202,
+          185,
+          53,
+          20
+        ],
+        "score": 0.7929637432098389
+      }
+    ],
+    "num_proposals": 225,
+    "kept_after_thr": 13,
+    "kept_after_nms": 4
+  }
+]
