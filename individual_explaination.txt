@@ -1,0 +1,70 @@
+Q5.2.1 Your implementation is a simplified version of Uijlings et. al approach (cf. figure ??). In what
+ways does their version differ from yours?
+
+1. Features & classifier:
+
+Uijlings: hand-crafted region features (color/texture histograms, SPM/BoW) + Histogram-Intersection-Kernel 
+SVM (non-linear).
+
+Mine : (extract_features_cnn ➜ train_svm): CNN embeddings (ResNet18),
+then scikit-learn SVM (mostly LinearSVC) with StandardScaler and optional PCA. 
+No histogram-intersection kernel.
+
+2. Labeling policy
+
+Uijlings: treat 20–50% IoU as “difficult negatives” (kept and especially useful for the classifier).
+
+Mine: general tp/tn thresholds (--tp, --tn) with an ignore band in between; default 0.75/0.25 (or the variants I tried).
+
+3. Proposals
+
+Uijlings: multiple diversification settings (“fast/quality”), several color spaces and similarity mixes to get ~2k regions.
+
+Mine: (run_ss/process_split_proposals): a single selective-search configuration per run (--scale/--sigma/--min-size), 
+basic dedup and min-size filtering.
+
+4. Scope / classes
+
+Uijlings: multi-class (one SVM per class; VOC-style evaluation, calibrated scores across classes).
+
+Mine: single class (balloon) throughout (samples, features, train, infer) and no inter-class score calibration.
+
+5. Post-processing
+Uijlings: class-wise scoring with standard (and sometimes tuned) NMS; kernel SVM scores are well behaved for histograms.
+Mine (infer_on_image): greedy NMS (non_max_suppression) with a single --score-thr and --nms-iou; optional sigmoid mapping of decision scores (_pipe_predict_scores).
+
+
+Q5.2.2 What is the effect of changing the thresholds for positive and negative samples? Why do we need
+two thresholds instead of just one?
+
+tp (positive IoU threshold)
+Raise tp → fewer but cleaner positives → usually higher precision, risk lower recall 
+Lower tp → more positives, but some are sloppy → can increase recall, often hurts precision.
+
+tn (negative IoU threshold)
+Lower tn → easy negatives only → model may not learn a sharp boundary → more false positives.
+Raise tn → includes hard negatives near the object → better discrimination (often better precision), but if too high you start mislabeling near-positives as negatives → recall can drop
+
+Why two thresholds?
+To create an ignore band between tn and tp. Proposals with IoU in that band are ambiguous 
+(neither clearly object nor background). Forcing a single threshold would label many borderline 
+boxes incorrectly and inject label noise into training. Ignoring them yields a cleaner dataset and 
+a better classifier.
+
+My result : 
+tp=0.75 / tn=0.25 : many positives (support=40) but low precision (0.56) and AP≈0.75 → too many borderline “positives” made
+the classifier over-score background.
+tp=0.80 / tn=0.20 : very few but very clean positives (support=12), high precision (0.85) and high recall (0.92), AP≈0.925.
+tp=0.60 / tn=0.40 : more hard negatives; precision stays high (0.88) but recall drops a bit (0.74); AP≈0.927 (similar overall, different P/R trade-off).
+
+
+Q5.2.3 The balloon dataset is quite small and does not provide many training samples. Can you think
+of ways to increase the amount of training data?
+
+1. Image Augmentation:
+Flip, small rotations, scale/resize-jitter, random crops/letterbox, aspect-ratio jitter, color jitter (brightness/contrast/saturation/hue), 
+blur, noise, JPEG compression, random erasing (cutout).
+
+2.Box jitter = extra positives
+For each GT box, create several perturbed boxes (shift/scale by a few pixels/percent) and keep only those with IoU ≥ tp. This gives many positive crops without changing the image.
+Plug-in point: inside build_samples_for_split before/after proposals.

@@ -1,0 +1,67 @@
+Q5.1.1 Felzenszwalb can already generate segmentations for the whole image, why do we need selective
+search at all?
+
+Felzenszwalb segmentation alone has several limitations for example :
+
+1. Fixed granularity: Felzenszwalb produces segments at only one scale level, determined by the scale, sigma, and min_size parameters. 
+Real objects in images exist at multiple scales - some objects are large, others are small.
+
+2. Limited object proposals: Felzenszwalb gives us the initial segmentation, but doesn't provide a comprehensive set of object proposals at different scales.
+
+3. Irregular shapes: Felzenszwalb segments follow natural image boundaries and create irregular, non-rectangular regions. Object detection algorithms typically need rectangular bounding boxes.
+
+4. Under/over-segmentation: A single segmentation may split one object into multiple segments or merge multiple objects into one segment.
+
+Selective Search solves :
+
+1. Multiple scales: This creates object proposals at various scales, from small details to large objects
+
+2. Hierarchical merging: Starting with Felzenszwalb's over-segmentation, it iteratively merges similar regions based on color, texture, size, and spatial compatibility
+
+3. Better object coverage: The hierarchical approach increases the likelihood that at least one proposal will closely match each object in the image
+
+Q5.1.2 Proposal filtering is implemented in main.py. What are the criteria based on which the boxes
+are filtered and what might be the effect? Do you agree with the criteria? Can you think of
+additional ones?
+
+1. Duplicate removal (yes): Eliminates redundant proposals, reducing computational overhead in downstream processing.
+2. Size threshold (2000 pixels): This is quite restrictive and may eliminate small but important objects. The effect is fewer, larger proposals, but potentially missing small objects of interest.
+3. Aspect ratio constraint (1.2 ratio limit):  This only allows nearly square objects, which eliminates many real-world objects like:
+
+        - People (typically taller than wide)
+        - Signs (often rectangular)
+
+additional:
+Edge density: Regions with very low edge content might be less likely to contain objects. 
+Explanation :
+
+Edge density measures the amount of edge content (strong intensity gradients) within a region relative to its size.
+- Real objects in images are defined by their boundaries - transitions between the object and background, or between different parts of the object (like textures, colors, materials).
+- Large areas of sky, walls, or other background elements typically have low edge density because they contain gradual or no intensity changes.
+- Even within objects, regions that contain important structural information (edges, corners, textures) are more likely to be useful for object recognition than smooth, uniform areas.
+
+Q5.1.3 Selective Search iteratively merges regions of arbitrary shapes. How do we obtain rectangles (box
+proposals) from that?
+
+# Task 8: Generating the final regions from R
+regions = []
+for label, region in R.items():
+    bbox = (region['min_x'], region['min_y'],
+            region['max_x'] - region['min_x'],
+            region['max_y'] - region['min_y'])
+    regions.append({
+        'rect': bbox,
+        'size': region['size'],
+        'labels': region['labels']
+    })
+
+1. For each merged region (regardless of its irregular shape), we find the axis-aligned bounding rectangle that completely contains all pixels belonging to that region.
+2. Throughout the merging process, each region maintains:
+    - min_x, max_x: leftmost and rightmost pixel coordinates
+    - min_y, max_y: topmost and bottommost pixel coordinates
+3. The final bounding box is defined as:
+    - Top-left corner: (min_x, min_y)
+    - Width: max_x - min_x
+    - Height: max_y - min_y
+
+4.  While the shape becomes rectangular, we preserve important information like the original size (number of pixels) and labels (which original segments were merged to create this region).
